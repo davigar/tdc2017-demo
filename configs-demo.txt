@@ -1,0 +1,29 @@
+[Zookeeper Start]
+C:\TDC2017\kafka_2.11-0.11.0.0\bin\windows\zookeeper-server-start C:\TDC2017\kafka_2.11-0.11.0.0\config\zookeeper.properties
+
+[Kafka Start]
+C:\TDC2017\kafka_2.11-0.11.0.0\bin\windows\kafka-server-start C:\TDC2017\kafka_2.11-0.11.0.0\config\server.properties
+
+[PRODUCER TEST]
+C:\TDC2017\kafka_2.11-0.11.0.0\bin\windows\kafka-console-producer --broker-list localhost:9092 --topic novo-lancamento
+
+[CONSUMER TEST]
+C:\TDC2017\kafka_2.11-0.11.0.0\bin\windows\kafka-console-consumer --zookeeper localhost:2181 --topic novo-lancamento
+C:\TDC2017\kafka_2.11-0.11.0.0\bin\windows\kafka-console-consumer --zookeeper localhost:2181 --topic lancamento-categorizado
+
+[CREATE TOPICS]
+C:\TDC2017\kafka_2.11-0.11.0.0\bin\windows\kafka-topics -zookeeper localhost:2181 --create --topic evento-conta-corrente --partitions 1 --replication-factor 1
+
+[ContaCorrenteAdapter]
+localhost:9092 novo-lancamento
+localhost:9092 novo-lancamento C:\tmp\massa.txt
+
+[GestorFinanceiro.Categorizador]
+localhost:9092 novo-lancamento lancamento-categorizado 
+
+[EventStore.Console]
+localhost:9092 novo-lancamento keep
+localhost:9092 novo-lancamento stop
+
+
+{"correlation-id":"bb9c91be-eae6-4409-abf9-944f3dadd05d","event-name":"lancamento-conta-corrente","timestamp":5233041986427387904,"item":{"lancamento-id":"e42375fe-b86c-4afe-8cdf-1b518c52c34e","descricao":"PAGTIT","valor":"1401616033","data":"7/17/2017 3:21:41 AM"}}
